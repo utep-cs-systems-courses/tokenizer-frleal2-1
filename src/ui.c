@@ -41,3 +41,31 @@ void read_input(){ //This is the basic UI for the program. it will give options 
   }
 }
 
+void tokenize_mode(){
+
+  char com[100];
+  List * history = init_history();
+  char ** tokens;
+
+  while(1){
+    printf("Enter string to tokenize all words or /e to quit or /l# for history access:");
+    scanf(" %99[^\n]s", com);
+    if(com[0] == '/'){
+      if(com[1] == 'e'){
+	break;
+      }
+      else if(com[1] == 'l'){
+	printf("Searching for ID %d \n", com[2] - '0');
+	//here we find id of history annd get tokens.
+      }
+      else{
+	printf("Command not recognized.\n");
+      }
+    }
+    else{
+      //here we tokenize the string
+    }
+  }
+}
+
+      
