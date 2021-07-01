@@ -29,11 +29,11 @@ List* init_history(){
 }
 
 /* Then we need to be able to add an element to the end of the list, function to add element to a list*/
-void add_history(List* list, char* string){
+void add_history(List* list, char* str){
   if(list->root == NULL){//initialize first value
     list->root = (Item*) malloc(sizeof(Item));
     list->root->id = 1;
-    list->root->str = str_duplicate(string);
+    list->root->str = str_duplicate(str);
     list->root->next = NULL;
   }
   else{
@@ -44,20 +44,20 @@ void add_history(List* list, char* string){
     }
     temp->next = (Item*)malloc(sizeof(Item));
     (*temp).next->id = ((*temp).id) + 1;
-    (*temp).next->str = str_duplicate(string);
+    (*temp).next->str = str_duplicate(str);
     (*temp).next->next = NULL;
 
   }
 }
 
 /* Function to retrieve string stored in node according to id*/
-char* get_history(List* list, int ident){
+char* get_history(List* list, int id){
   Item* temp;
   if(list->root == NULL)
     return "List is empty";
   temp = (list->root);
   while(temp!=NULL){
-    if((*temp).id == ident){
+    if((*temp).id == id){
       return (*temp).str;
     }
     temp = temp->next;
