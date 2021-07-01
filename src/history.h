@@ -11,6 +11,8 @@ typedef struct s_List {
   struct s_Item *root;
 } List;
 
+char* str_duplicate(char* string);
+
 /* Initialize the linked list to keep the history. */
 
 List* init_history();
