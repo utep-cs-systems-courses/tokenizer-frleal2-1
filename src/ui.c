@@ -60,7 +60,8 @@ void tokenize_mode(){
       }
       else if(com[1] == 'l'){
 	printf("Searching for ID %d \n", com[2] - '0');
-	//here we find id of history annd get tokens.
+	tokens = tokenize(get_history(history, com[2] - '0'));
+	print_tokens(tokens);
       }
       else{
 	printf("Command not recognized.\n");
@@ -69,7 +70,7 @@ void tokenize_mode(){
     else{
       tokens = tokenize(com);
       print_tokens(tokens);
-      //add to history
+      add_history(history,com);
       free_tokens(tokens);
       printf('\n');
     }
