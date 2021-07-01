@@ -69,7 +69,7 @@ char** tokenize(char* str){
   short words_num = count_words(str);
   short word_leng =0;
   char** tokens = (char**) malloc((words_num+1)*sizeof(char*));//we allocate memory for the number of pointers needed
-  
+  printf("memory allocated");
   for(short i=0;i<words_num;i++){ //we will calculate length of each string and allocate memory for each
     
     char *start = word_start(str); //pointer at the beginning of a word.
@@ -77,9 +77,12 @@ char** tokenize(char* str){
     char *end = word_terminator(str);  //pointer at the end of a word.
     
     int word_leng = (int)(end - start) + 1; //This computes the lenght of each word.
+    printf("word  length calculated");
     
     tokens[i] = copy_str(start, word_leng); //allocates the memory for all the words and copies each word into a token.
     
+    printf("tokenized");l
+      
     str = word_start(end);  //Makes the sentence start at the beggining of the next word.
     
     //tokens[i][word_leng] = '\0';
