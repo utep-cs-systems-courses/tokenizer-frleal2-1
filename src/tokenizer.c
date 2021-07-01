@@ -2,18 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char *copy_str(char *str, short length){
-  char *tokens = (char *)malloc(sizeof(char) * (length + 1));
-  
-  int i = 0;
-  while(i < length && str[i] != '\0'){
-    tokens[i] = str[i];
-    i++;
-  }
-  tokens[length] = '\0';
-  return tokens;
-}
-
 /*Evaluates weather a character is valid*/
 int space_char(char c){
   switch(c){
@@ -46,11 +34,11 @@ char *word_start(char *str){
 }
 
 /*Function to find the end of a word*/
-char *word_terminator(char *str){
-  while(non_space_char(*str) == 1 && *str != '\0'){
-    str++;
+char *word_terminator(char *word){
+  while(non_space_char(*word) == 1 && *word != '\0'){
+    word++;
   }
-  return str;
+  return word;
 }
 
 /*Function to find the number of words there is in a sentence or sentence*/
@@ -63,6 +51,42 @@ int count_words(char *str){
   }
   return counter;
   
+}
+
+char *copy_str(char *inStr, short len){
+  char *tokens = (char *)malloc(sizeof(char) * (len + 1));
+  
+  int i = 0;
+  while(i < len && inStr[i] != '\0'){
+    tokens[i] = inStr[i];
+    i++;
+  }
+  tokens[len] = '\0';
+  return tokens;
+}
+
+char** tokenize(char* str){
+  short words_num = count_words(str);
+  short word_leng =0;
+  char** tokens = (char**) malloc((words_num+1)*sizeof(char*));//we allocate memory for the number of pointers needed
+  
+  for(short i=0;i<words_num;i++){ //we will calculate length of each string and allocate memory for each
+    
+    char *start = word_start(str); //pointer at the beginning of a word.
+    
+    char *end = word_terminator(str);  //pointer at the end of a word.
+    
+    int word_leng = (int)(end - start) + 1; //This computes the lenght of each word.
+    
+    tokens[i] = copy_str(start, word_leng); //allocates the memory for all the words and copies each word into a token.
+    
+    sentence = word_start(end);  //Makes the sentence start at the beggining of the next word.
+    
+    //tokens[i][word_leng] = '\0';
+    
+  }
+  tokens[words_num] = '\0';
+  return tokens;
 }
 
 /* Function that prints all tokens*/
@@ -84,26 +108,4 @@ void free_tokens(char** tokens){
 }
 
 /*Function that tokenizes the string that is passed on to the argument into an array of tokens*/
-char** tokenize(char* sentence){
-  short words_num = count_words(sentence);
-  short word_leng =0;
-  char** tokens = (char**) malloc((words_num+1)*sizeof(char*));//we allocate memory for the number of pointers needed
-  
-  for(short i=0;i<words_num;i++){ //we will calculate length of each string and allocate memory for each
-    
-    char *start = word_start(sentence); //pointer at the beginning of a word.
-    
-    char *end = word_end(sentence);  //pointer at the end of a word.
-    
-    int word_leng = (int)(end - start) + 1; //This computes the lenght of each word.
-    
-    tokens[i] = copy_str(start, word_leng); //allocates the memory for all the words and copies each word into a token.
-    
-    sentence = word_start(end);  //Makes the sentence start at the beggining of the next word.
-    
-    //tokens[i][word_leng] = '\0';
-    
-  }
-  tokens[words_num] = '\0';
-  return tokens;
-}
+
