@@ -52,8 +52,10 @@ void tokenize_mode(){
   char ** tokens;
 
   while(1){
-    printf("Enter string to tokenize all words or /e to quit or /l# for history access:");
+    printf("Enter string to tokenize all words or /e to quit or /l# for history access:\n");
+    // printf("sca
     scanf(" %99[^\n]s", com);
+    // printf("scanning\n");
     if(com[0] == '/'){
       if(com[1] == 'e'){
 	break;
@@ -68,12 +70,14 @@ void tokenize_mode(){
       }
     }
     else{
+      //printf("tokenizing");
       tokens = tokenize(com);
+      //printf("done");
       print_tokens(tokens);
       add_history(history,com);
       free_tokens(tokens);
-      printf('\n');
     }
+    printf("\n");
   }
 }
 
