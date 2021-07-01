@@ -46,7 +46,7 @@ int count_words(char *str){
   int counter = 0;
   while(*str != '\0'){
     str = word_start(str);
-    str = word_end(str);
+    str = word_terminator(str);
     counter++;
   }
   return counter;
