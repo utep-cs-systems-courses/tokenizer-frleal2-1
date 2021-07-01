@@ -80,7 +80,7 @@ char** tokenize(char* str){
     
     tokens[i] = copy_str(start, word_leng); //allocates the memory for all the words and copies each word into a token.
     
-    sentence = word_start(end);  //Makes the sentence start at the beggining of the next word.
+    str = word_start(end);  //Makes the sentence start at the beggining of the next word.
     
     //tokens[i][word_leng] = '\0';
     
